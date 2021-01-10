@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom";
+import Header from "../Header";
 import './style.css';
 
 const useStyles = makeStyles({
@@ -29,11 +30,7 @@ export default function Home() {
   const classes = useStyles();
   return (
     <div className="home">
-    <header className="home__header">
-      <h1 className = "home__header__title">
-       BellyBirds
-      </h1>
-    </header>
+       <Header></Header>
     <div className="home__navigation">
       <div className="home__navigation__buttons">
       <Button variant="contained" className={classes.primary}  component={Link} to="/login" color="primary">Login</Button>
