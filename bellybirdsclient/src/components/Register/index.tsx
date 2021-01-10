@@ -21,8 +21,13 @@ export default function Register() {
         const requestObj = JSON.stringify({
             email, password
         })
+        const config = {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          };
     
-        const res = await axios.post("http://localhost:1337/api/register", requestObj);
+        const res = await axios.post("http://localhost:1337/api/register", requestObj, config);
 
         console.log(res, "response after click on register");
     }
