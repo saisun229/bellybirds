@@ -1,0 +1,40 @@
+.login {
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.login__form {
+  display: flex;
+  width: 35%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 25vh;
+  padding: 1rem 0;
+  border: 1px solid #dacb1c
+}
+
+.login__form form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.MuiFormLabel-root.Mui-focused {
+  color: #dacb1c !important;
+}
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #dacb1c !important;
+}
+
+.makeStyles-root-3 > * {
+  width: 100% !important; 
+}
+
+form {
+  width: 80%;
+}

@@ -1,0 +1,1 @@
+export const REGISTER_USER_ENDPOINT = "/api/register";
