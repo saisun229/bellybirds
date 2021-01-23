@@ -1,6 +1,6 @@
 import { Mongoose } from "mongoose"
 
-import mongoose from "mongoose";
+import * as mongoose from "mongoose";
 
 const UserModel = new mongoose.Schema(
     {

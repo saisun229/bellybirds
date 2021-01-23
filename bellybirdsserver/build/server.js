@@ -1,21 +1,19 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const body_parser_1 = __importDefault(require("body-parser"));
-const cors_1 = __importDefault(require("cors"));
-const mongoose_1 = __importDefault(require("mongoose"));
-const user_1 = __importDefault(require("./models/user"));
-const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const app = express_1.default();
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const mongoose = require("mongoose");
+const user_1 = require("./models/user");
+const jwt = require("jsonwebtoken");
+const websocket_1 = require("./websocket");
+const app = express();
 const JSON_SECRET_TOKEN = "sjhbvkab6987sDvbbf9969870^$&^%&^(*&()&($7fsbfb796795759jbmblknvlfv78i689689sd6vsdv";
-mongoose_1.default.connect("mongodb://127.0.0.1:27017/bellybirds");
+mongoose.connect("mongodb://127.0.0.1:27017/bellybirds");
 if (process.env.NODE_ENV !== "production") {
-    app.use(cors_1.default());
+    app.use(cors());
 }
-app.use(body_parser_1.default.json());
+app.use(bodyParser.json());
 app.get("/", (req, res) => {
     res.send("ok");
 });
@@ -40,7 +38,7 @@ app.post("/api/login", async (req, res) => {
     //Right now:
     //1. JWT tokens directly
     //2. localStorage
-    const payload = jsonwebtoken_1.default.sign({ email }, JSON_SECRET_TOKEN);
+    const payload = jwt.sign({ email }, JSON_SECRET_TOKEN);
     if (user) {
         return res.json({ status: "ok", data: payload });
         console.log(user, "fetched user");
@@ -54,9 +52,11 @@ app.post("/api/register", async (req, res) => {
     }
     //ToDo: Hashing the password bcrypt
     try {
+        console.log("Im here 1");
         const user = new user_1.default({ email, password });
+        console.log("Im here 2", user);
         await user.save();
-        console.log("Im here");
+        console.log("Im here 3");
     }
     catch (e) {
         console.log("Error occured while User registration", e);
@@ -65,3 +65,4 @@ app.post("/api/register", async (req, res) => {
     res.json({ status: "ok" });
 });
 app.listen(1337);
+websocket_1.default();

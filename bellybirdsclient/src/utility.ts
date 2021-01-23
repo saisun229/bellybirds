@@ -9,7 +9,9 @@ export async function apiCall(path: string, payload: {[key: string]:any})  {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "x-access-token": localStorage.getItem("token") || ""
+            "x-access-token": window.localStorage.getItem("token") || "",
+            "Access-Control-Allow-Origin": "true",
+            "Access-Control-Allow-Credentials": "true"
         },
         body: JSON.stringify(payload)
     }).then(t => t.json())

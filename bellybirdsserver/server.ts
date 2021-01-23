@@ -1,9 +1,10 @@
-import express from "express";
-import bodyParser from  "body-parser";
-import cors from "cors";
-import mongoose from "mongoose";
+import * as express from "express";
+import * as bodyParser from  "body-parser";
+import * as cors from "cors";
+import * as mongoose from "mongoose";
 import User from "./models/user";
-import jwt from "jsonwebtoken";
+import * as jwt from "jsonwebtoken";
+import setupWebSocketServer from "./websocket";
 
 const app = express();
 
@@ -13,7 +14,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/bellybirds");
 
 
 if(process.env.NODE_ENV !== "production") {
-    app.use(cors())
+    app.use(cors());
 }
 
 app.use(bodyParser.json());
@@ -93,3 +94,4 @@ app.post("/api/register", async (req,res) => {
 })
 
 app.listen(1337);
+setupWebSocketServer();
