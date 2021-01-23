@@ -5,8 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import './style.css';
 import { Button } from "@material-ui/core";
 import { useButtonStyles, useTextFieldStyles } from "../../RootStyles";
-import axios from "axios";
 import {REGISTER_USER_ENDPOINT} from "../../endpoints";
+import { axiosApiCall } from "../../utility";
 
 
 
@@ -18,18 +18,13 @@ export default function Register() {
     const [password, setPassword] = useState("");
 
     async function registerUser() {
-        const requestObj = JSON.stringify({
-            email, password
-        })
-        const config = {
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          };
-    
-        const res = await axios.post("http://localhost:1337/api/register", requestObj, config);
 
-        console.log(res, "response after click on register");
+        try {
+            const res: any = axiosApiCall(REGISTER_USER_ENDPOINT, {email, password});
+            alert("Your registration is successful");
+        } catch(e) {
+            alert(e);
+        }
     }
 
 
