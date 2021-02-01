@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const WebSocket = require("ws");
-const messages_1 = require("./models/messages");
 const utilities_1 = require("./utilities");
+const websocketHelper_1 = require("./websocketHelper");
 const http = require("http");
 const jwt = require("jsonwebtoken");
 const server = http.createServer();
@@ -25,14 +25,15 @@ function setupWebSocketServer() {
                 //ignore
                 return;
             }
-            const newMessage = new messages_1.default({
-                email: ws.connectionID,
-                message: message.message,
-                date: Date.now()
-            });
-            newMessage.save(); //queue the task in background
-            //broadcast message to all clients
-            clients.forEach((client) => client.send(JSON.stringify(Object.assign(Object.assign({}, message), { user: ws.connectionID, intent: "chat" }))));
+            if (message.intent === "chat") {
+                websocketHelper_1.broadCastMessage(message, ws, clients);
+            }
+            else if (message.intent === "old-messages") {
+                const count = message.count;
+                if (!count)
+                    return;
+                websocketHelper_1.retrieveAndSendMessages(count, ws, clients);
+            }
         });
     });
     server.on('upgrade', function upgrade(request, socket, head) {

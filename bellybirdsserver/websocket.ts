@@ -1,6 +1,6 @@
 import * as WebSocket from "ws";
-import Message from "./models/messages";
 import {processMessage, CustomWebSocket, JSON_SECRET_TOKEN} from "./utilities";
+import {broadCastMessage, retrieveAndSendMessages} from "./websocketHelper";
 import {v4 as uuid} from "uuid";
 import * as http from "http";
 import * as jwt from "jsonwebtoken";
@@ -9,6 +9,7 @@ const server = http.createServer();
 const wss = new WebSocket.Server({ noServer: true });
 
 let clients: CustomWebSocket[] = []
+
 
 export default function setupWebSocketServer() {
 
@@ -34,17 +35,15 @@ export default function setupWebSocketServer() {
               //ignore
               return;
           }
-          const newMessage = new Message({
-            email: ws.connectionID,
-            message: message.message,
-            date: Date.now()
-          });
 
-          newMessage.save(); //queue the task in background
-
-          //broadcast message to all clients
-          clients.forEach((client) => client.send(JSON.stringify({...message, user: ws.connectionID, intent: "chat"})));
-
+          if(message.intent === "chat") {
+             broadCastMessage(message, ws, clients);
+          } else if(message.intent === "old-messages"){
+            const count = message.count;
+            if(!count) return;
+            retrieveAndSendMessages(count, ws, clients);
+          }
+   
         });
       });
 

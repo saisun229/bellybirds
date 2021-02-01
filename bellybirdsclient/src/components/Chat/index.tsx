@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom"
 
 
 type Message = {
-  user: string;
+  email: string;
   message: string;
   intent: string;
   //ToDO: date
@@ -51,9 +51,9 @@ export default function Chat() {
   useEffect(() => {
        const ws = new WebSocket(`ws://localhost:1338/${localStorage.getItem("token")}`);
 
-      //  ws.addEventListener("open", ()=> {
-      //   ws.send(JSON.stringify({ message: 'You are Ready to chat!', intent: 'notchat'}));
-      //  }, {once: true});
+       ws.addEventListener("open", ()=> {
+        ws.send(JSON.stringify({ intent: 'old-messages', count: 10}));
+       }, {once: true});
 
        ws.addEventListener("error", ()=> {
          alert("Please login");
@@ -62,11 +62,14 @@ export default function Chat() {
 
        ws.addEventListener("message", (event) => {
          const data = event.data;
-         const message: null | Message = processMessage(data);
+         const message: any = processMessage(data);
          if(!message) return
          console.log("message", message)
          if(message.intent === "chat") {
-          setChatMessages(oldMessages => [...oldMessages, message]);
+          setChatMessages(oldMessages => [...oldMessages, message as Message]);
+         } else if (message.intent === "old-messages") {
+           console.log("old-messages", message.data);
+           setChatMessages(message.data.reverse());
          }
          
        })
@@ -84,9 +87,10 @@ export default function Chat() {
        <Header></Header>
        <h2>Chat Box</h2>
        <div className="chat__messages">
+         {console.log("chatMessages", chatMessages)}
          { chatMessages.map( (message, index) => {
            return (<div className="chat__messages__item" key={index}>
-                     <div className="author">{message.user}:</div>
+                     <div className="author">{message.email}:</div>
                      <div className="message">{message.message}</div>
                  </div>)
          }) }
