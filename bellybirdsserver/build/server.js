@@ -7,8 +7,8 @@ const mongoose = require("mongoose");
 const user_1 = require("./models/user");
 const jwt = require("jsonwebtoken");
 const websocket_1 = require("./websocket");
+const utilities_1 = require("./utilities");
 const app = express();
-const JSON_SECRET_TOKEN = "sjhbvkab6987sDvbbf9969870^$&^%&^(*&()&($7fsbfb796795759jbmblknvlfv78i689689sd6vsdv";
 mongoose.connect("mongodb://127.0.0.1:27017/bellybirds");
 if (process.env.NODE_ENV !== "production") {
     app.use(cors());
@@ -38,7 +38,7 @@ app.post("/api/login", async (req, res) => {
     //Right now:
     //1. JWT tokens directly
     //2. localStorage
-    const payload = jwt.sign({ email }, JSON_SECRET_TOKEN);
+    const payload = jwt.sign({ email }, utilities_1.JSON_SECRET_TOKEN);
     if (user) {
         return res.json({ status: "ok", data: payload });
         console.log(user, "fetched user");

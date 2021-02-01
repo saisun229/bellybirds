@@ -5,10 +5,9 @@ import * as mongoose from "mongoose";
 import User from "./models/user";
 import * as jwt from "jsonwebtoken";
 import setupWebSocketServer from "./websocket";
+import {JSON_SECRET_TOKEN} from "./utilities";
 
 const app = express();
-
-const JSON_SECRET_TOKEN = "sjhbvkab6987sDvbbf9969870^$&^%&^(*&()&($7fsbfb796795759jbmblknvlfv78i689689sd6vsdv"
 
 mongoose.connect("mongodb://127.0.0.1:27017/bellybirds");
 
