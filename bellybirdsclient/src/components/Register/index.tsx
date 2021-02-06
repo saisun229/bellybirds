@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import Header from "../Header";
 import { TextField } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import './style.css';
 import { Button } from "@material-ui/core";
 import { useButtonStyles, useTextFieldStyles } from "../../RootStyles";
@@ -22,6 +21,7 @@ export default function Register() {
         try {
             const res: any = axiosApiCall(REGISTER_USER_ENDPOINT, {email, password});
             alert("Your registration is successful");
+            console.log("registration response",res);
         } catch(e) {
             alert(e);
         }
