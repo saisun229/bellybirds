@@ -10,7 +10,7 @@ name: CI Deploy
 
 on:
   push:
-    branches: [main]
+    branches: [master]
 
 env: 
     AWS_HOST: 18.220.70.46
