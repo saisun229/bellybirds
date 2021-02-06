@@ -1,8 +1,8 @@
 *
-!client/
-!server/
-!server/build
-!server/build/**
-!server/package*
-!client/build
-!client/build/**
+!bellybirdsclient/
+!bellybirdsserver/
+!bellybirdsserver/build
+!bellybirdsserver/build/**
+!bellybirdsserver/package*
+!bellybirdsclient/build
+!bellybirdsclient/build/**
