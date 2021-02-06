@@ -44,9 +44,9 @@ jobs:
                   mkdir ~/.ssh;
                   touch ~/.ssh/known_hosts;
                   ssh-keyscan $AWS_HOST >> ~/.ssh/known_hosts;
-                  echo $DEPLOYMENT_KEY_B64 > ~/.ssh/id_rsa;
+                  echo $DEPLOYMENT_KEY_B64 | base64 -d > ~/.ssh/github_actions_deployment;
                   chmod 644 ~/.ssh/known_hosts;
-                  chmod 600 ~/.ssh/id_rsa;
+                  chmod 600 ~/.ssh/github_actions_deployment;
                   chmod 0755 ./.github/workflows/deploy.sh;
                   ./.github/workflows/deploy.sh;
                   rm -rf ~/.ssh;
