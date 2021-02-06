@@ -80,7 +80,7 @@ export default function Chat() {
          ws.close();
        }
 
-  }, [])
+  }, [history])
   
   return (
     <div className="chat">
