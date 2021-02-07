@@ -14,7 +14,7 @@
   flex-direction: column;
   margin-top: 25vh;
   padding: 1rem 0;
-  border: 1px solid #dacb1c
+  border: 1px solid #dacb1c;
 }
 
 .login__form form {
@@ -31,8 +31,16 @@
   border-color: #dacb1c !important;
 }
 
-.makeStyles-root-3 > * {
+/* .makeStyles-root-3 > * {
   width: 100% !important; 
+} */
+
+
+.login__form button {
+  width: 100%;
+}
+.MuiFormControl-fullWidth {
+  margin: 8px;
 }
 
 form {

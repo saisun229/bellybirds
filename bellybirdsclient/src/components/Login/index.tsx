@@ -9,7 +9,7 @@ import { axiosApiCall } from "../../utility";
 import { LOGIN_USER_ENDPOINT } from "../../endpoints";
 
 
-export default function Register() {
+export default function Login() {
     const buttonclasses = useButtonStyles();
     const textFieldClasses = useTextFieldStyles();
 

@@ -8,13 +8,17 @@ const user_1 = require("./models/user");
 const jwt = require("jsonwebtoken");
 const websocket_1 = require("./websocket");
 const utilities_1 = require("./utilities");
+const PRODUCTION = process.env.NODE_ENV === "production";
 const app = express();
+// if(PRODUCTION) {
+//     app.use("/", express.static('/home/ubuntu/webapp/bellybirdsclient/build'));
+// }
 mongoose.connect("mongodb://127.0.0.1:27017/bellybirds");
-if (process.env.NODE_ENV !== "production") {
-    app.use(cors());
-}
+// if(!PRODUCTION) {
+app.use(cors());
+// }
 app.use(bodyParser.json());
-app.get("/", (req, res) => {
+app.get("/test", (req, res) => {
     res.send("ok");
 });
 //TODO:
@@ -29,8 +33,8 @@ app.post("/api/login", async (req, res) => {
     }
     const user = await user_1.default.findOne({ email, password }).lean();
     if (!user) {
+        console.log("error login server");
         return res.json({ status: "error", error: "User not found" });
-        console.log("Error occured while fetching user");
     }
     //TODO: Best practices
     // 1. Refresh tokens XX
