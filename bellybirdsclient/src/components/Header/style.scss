@@ -3,6 +3,18 @@
 .home__header {
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
-  background: linear-gradient(45deg, #9ca20e 30%, #dacb1c 90%);
+  height: 100px;
+  background-color: #fff;
+
+  &__heading {
+    display: none;
+  }
+
+  &__logo {
+    display: flex;
+    justify-content: center;
+    img { width: 25%; }
+  }
 }
