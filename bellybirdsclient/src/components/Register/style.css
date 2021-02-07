@@ -47,5 +47,5 @@ form {
 }
 .MuiFormControl-fullWidth {
   margin: 8px;
-  width: 100%;
+  width: 100% !important;
 }
