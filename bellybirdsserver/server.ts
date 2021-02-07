@@ -46,8 +46,9 @@ app.post("/api/login", async (req,res): Promise<any> => {
         const user = await User.findOne({email, password}).lean();
 
         if(!user) {
+            console.log("error login server");
            return res.json({status: "error", error: "User not found"});
-            console.log("Error occured while fetching user");
+           
         }
 
 
