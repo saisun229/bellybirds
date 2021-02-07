@@ -3,7 +3,15 @@ import {createStore} from "redux";
 import jwt_decode from "jwt-decode";
 
 const token: any = localStorage.getItem("token");
-const decoded: any = jwt_decode(token);
+let decoded = {
+    email: undefined,
+    username: undefined
+}
+if(token) {
+     decoded = jwt_decode(token);
+}
+
+
 
 const intitalState = {
     user: {

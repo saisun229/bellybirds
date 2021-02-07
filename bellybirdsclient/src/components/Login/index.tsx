@@ -8,6 +8,8 @@ import { useButtonStyles, useTextFieldStyles } from "../../RootStyles";
 import { axiosApiCall } from "../../utility";
 import { LOGIN_USER_ENDPOINT } from "../../endpoints";
 import Alerts from "../Styleguide/Alerts";
+import jwt_decode from "jwt-decode";
+import {store} from "../../redux";
 
 
 export default function Login() {
@@ -29,7 +31,9 @@ export default function Login() {
             window.localStorage.setItem("token", response.token);
             if (response.status === "success") {
                 history.push("/chat");
-                // store.dispatch({type: 'getUser', user: { email: decoded.email, uname: decoded.username}});
+                const token: any = localStorage.getItem("token");
+                const decoded: any = jwt_decode(token)
+                store.dispatch({type: 'getUser', user: { email: decoded.email, uname: decoded.username}});
             }
         } catch (e) {
             setSeverity("error");
