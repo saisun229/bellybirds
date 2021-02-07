@@ -24,9 +24,9 @@ if(!PRODUCTION) {
 
 app.use(bodyParser.json());
 
-// app.get("/", (req,res) => {
-//     res.send("ok");
-// })
+app.get("/test", (req,res) => {
+    res.send("ok");
+})
 
 //TODO:
 app.get("/refresh", () => {
