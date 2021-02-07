@@ -2,7 +2,6 @@
 
 .home__header {
   display: flex;
-  justify-content: center;
   align-items: center;
   width: 100%;
   height: 100px;
@@ -10,6 +9,14 @@
 
   &__heading {
     display: none;
+  }
+
+  &__username {
+    display: flex;
+    position: absolute;
+    font-size: 0.85rem;
+    color: #717127;
+    right: 20px;
   }
 
   &__logo {

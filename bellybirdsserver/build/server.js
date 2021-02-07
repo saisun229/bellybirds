@@ -41,28 +41,30 @@ app.post("/api/login", async (req, res) => {
     //Right now:
     //1. JWT tokens directly
     //2. localStorage
-    const payload = jwt.sign({ email }, utilities_1.JSON_SECRET_TOKEN);
+    const username = user.uname;
+    const payload = jwt.sign({ email, username }, utilities_1.JSON_SECRET_TOKEN);
     if (user) {
+        console.log("username....", user);
         return res.json({ status: "success", message: "Login Succesful!", token: payload });
     }
 });
 app.post("/api/register", async (req, res) => {
     console.log("request received for register RequestBody:", req.body);
-    const { email, password } = req.body;
-    if (!email || !password) {
+    const { uname, email, password } = req.body;
+    if (!email || !password || !uname) {
         return res.json({ status: "error", message: "Invalid email password" });
     }
     //ToDo: Hashing the password bcrypt
     try {
         console.log("Im here 1");
-        const user = new user_1.default({ email, password });
+        const user = new user_1.default({ uname, email, password });
         console.log("Im here 2", user);
         await user.save();
         console.log("Im here 3");
     }
     catch (e) {
         console.log("Error occured while User registration", e);
-        return res.json({ status: "error", message: "Duplicate Email" });
+        return res.json({ status: "error", message: "Duplicate Email or User Name" });
     }
     return res.json({ status: "success", message: "Your registration is Successful!" });
 });

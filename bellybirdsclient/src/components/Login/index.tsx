@@ -29,6 +29,7 @@ export default function Login() {
             window.localStorage.setItem("token", response.token);
             if (response.status === "success") {
                 history.push("/chat");
+                // store.dispatch({type: 'getUser', user: { email: decoded.email, uname: decoded.username}});
             }
         } catch (e) {
             setSeverity("error");

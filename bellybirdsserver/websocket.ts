@@ -8,7 +8,8 @@ import * as jwt from "jsonwebtoken";
 const server = http.createServer();
 const wss = new WebSocket.Server({ noServer: true });
 
-let clients: CustomWebSocket[] = []
+let clients: CustomWebSocket[] = [];
+
 
 
 export default function setupWebSocketServer() {

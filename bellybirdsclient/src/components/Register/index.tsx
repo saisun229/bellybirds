@@ -15,6 +15,7 @@ export default function Register() {
     const buttonclasses = useButtonStyles();
     const textFieldClasses = useTextFieldStyles();
 
+    const [uname, setUname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [text, setText] = useState("");
@@ -24,8 +25,20 @@ export default function Register() {
 
     async function registerUser() {
 
+        const patternMatched = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email);
+        if (!patternMatched) {
+           setSeverity("error");
+           setText("Invalid Email Address"); 
+           return false;
+           }
+         if(!password && password.length < 8) {
+            setSeverity("error");
+            setText("Password should be atleast 8 digits"); 
+            return false;
+         }  
+
         try {
-            const response = await axiosApiCall(REGISTER_USER_ENDPOINT, {email, password});
+            const response = await axiosApiCall(REGISTER_USER_ENDPOINT, {uname, email, password});
             console.log("ressss", response);
             setSeverity(response.status);
             setText(response.message);
@@ -46,6 +59,7 @@ export default function Register() {
         <Alerts severity= {severity} text={text}></Alerts>
         <h2>Register</h2>
         <form className={textFieldClasses.root} noValidate autoComplete="off">
+           <TextField fullWidth id="filled-basic" placeholder="John123" label="User Name" value={uname} onChange={(e) => setUname(e.target.value)} variant="outlined" />
            <TextField fullWidth id="filled-basic" placeholder="you@awesome.com" label="Your Email" value={email} onChange={(e) => setEmail(e.target.value)} variant="outlined" />
            <TextField fullWidth id="filled-basic" placeholder="p@$$w0rd" label="Your Password" variant="outlined" value={password} onChange={(e) => setPassword(e.target.value)}/>
            <Button fullWidth className={buttonclasses.secondary} onClick={registerUser} color="default" >Register</Button>

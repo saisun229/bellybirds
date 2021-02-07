@@ -3,7 +3,7 @@ import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import Header from "../Header";
 import { useButtonStyles } from "../../RootStyles";
-import './style.css';
+import './style.scss';
 
 
 export default function Home() {
