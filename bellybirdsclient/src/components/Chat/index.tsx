@@ -13,6 +13,7 @@ type Message = {
   //ToDO: date
 }
 
+const HOST = window.location.hostname + ':1338';
 
 export default function Chat() {
 
@@ -49,7 +50,7 @@ export default function Chat() {
   }
 
   useEffect(() => {
-       const ws = new WebSocket(`ws://localhost:1338/${localStorage.getItem("token")}`);
+       const ws = new WebSocket(`ws://${HOST}/${localStorage.getItem("token")}`);
 
        ws.addEventListener("open", ()=> {
         ws.send(JSON.stringify({ intent: 'old-messages', count: 10}));
