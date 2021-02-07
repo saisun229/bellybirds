@@ -7,6 +7,7 @@ import { useButtonStyles, useTextFieldStyles } from "../../RootStyles";
 import {REGISTER_USER_ENDPOINT} from "../../endpoints";
 import { axiosApiCall } from "../../utility";
 import Alerts from "../Styleguide/Alerts";
+import { useHistory } from "react-router-dom"
 
 
 
@@ -19,6 +20,8 @@ export default function Register() {
     const [text, setText] = useState("");
     const [severity, setSeverity] = useState("");
 
+    const history = useHistory();
+
     async function registerUser() {
 
         try {
@@ -26,6 +29,9 @@ export default function Register() {
             console.log("ressss", response);
             setSeverity(response.status);
             setText(response.message);
+            if (response.status === "success") {
+                history.replace("/chat");
+            }
         } catch(e) {
             setSeverity("error");
             setText("Unexpected Error occured");
