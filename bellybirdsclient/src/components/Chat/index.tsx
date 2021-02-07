@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import { TextField, Button } from '@material-ui/core';
 import { useButtonStyles} from "../../RootStyles"
 import Header from "../Header";
-import './style.css';
+import './style.scss';
 import { useHistory } from "react-router-dom"
 
 

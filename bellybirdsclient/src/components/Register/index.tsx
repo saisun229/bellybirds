@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Header from "../Header";
 import { TextField } from '@material-ui/core';
-import './style.css';
+import './style.scss';
 import { Button } from "@material-ui/core";
 import { useButtonStyles, useTextFieldStyles } from "../../RootStyles";
 import {REGISTER_USER_ENDPOINT} from "../../endpoints";

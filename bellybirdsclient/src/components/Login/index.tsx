@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import Header from "../Header";
-import './style.css';
+import './style.scss';
 import { TextField } from '@material-ui/core';
 import { useHistory } from "react-router-dom";
 import { Button } from "@material-ui/core";
