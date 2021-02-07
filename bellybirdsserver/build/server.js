@@ -29,12 +29,11 @@ app.post("/api/login", async (req, res) => {
     console.log("request received for register RequestBody:", req.body);
     const { email, password } = req.body;
     if (!email || !password) {
-        return res.json({ status: "error", error: "Invalid email password" });
+        return res.json({ status: "error", message: "Invalid email password combination" });
     }
     const user = await user_1.default.findOne({ email, password }).lean();
     if (!user) {
-        console.log("error login server");
-        return res.json({ status: "error", error: "User not found" });
+        return res.json({ status: "error", message: "User not found" });
     }
     //TODO: Best practices
     // 1. Refresh tokens XX
@@ -44,15 +43,14 @@ app.post("/api/login", async (req, res) => {
     //2. localStorage
     const payload = jwt.sign({ email }, utilities_1.JSON_SECRET_TOKEN);
     if (user) {
-        return res.json({ status: "ok", data: payload });
-        console.log(user, "fetched user");
+        return res.json({ status: "success", message: "Login Succesful!", token: payload });
     }
 });
 app.post("/api/register", async (req, res) => {
     console.log("request received for register RequestBody:", req.body);
     const { email, password } = req.body;
     if (!email || !password) {
-        return res.json({ status: "error", error: "Invalid email password" });
+        return res.json({ status: "error", message: "Invalid email password" });
     }
     //ToDo: Hashing the password bcrypt
     try {
@@ -64,9 +62,9 @@ app.post("/api/register", async (req, res) => {
     }
     catch (e) {
         console.log("Error occured while User registration", e);
-        res.json({ status: "error", error: "Duplicate Email" });
+        return res.json({ status: "error", message: "Duplicate Email" });
     }
-    res.json({ status: "ok" });
+    return res.json({ status: "success", message: "Your registration is Successful!" });
 });
 app.listen(1337);
 websocket_1.default();

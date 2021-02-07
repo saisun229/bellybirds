@@ -39,16 +39,14 @@ app.post("/api/login", async (req,res): Promise<any> => {
     const {email, password} = req.body;
 
     if(!email || !password) {
-        return res.json({ status: "error", error: "Invalid email password"});
+        return res.json({ status: "error", message: "Invalid email password combination"});
     }
 
 
         const user = await User.findOne({email, password}).lean();
 
         if(!user) {
-            console.log("error login server");
-           return res.json({status: "error", error: "User not found"});
-           
+           return res.json({status: "error", message: "User not found"});
         }
 
 
@@ -66,8 +64,7 @@ app.post("/api/login", async (req,res): Promise<any> => {
         const payload = jwt.sign({ email },  JSON_SECRET_TOKEN)
 
         if(user) {
-            return res.json({status: "ok", data: payload});
-            console.log(user,"fetched user"); 
+            return res.json({status: "success", message: "Login Succesful!", token: payload});
         }
 
         
@@ -79,7 +76,7 @@ app.post("/api/register", async (req,res) => {
     const {email, password} = req.body;
 
     if(!email || !password) {
-        return res.json({ status: "error", error: "Invalid email password"});
+        return res.json({ status: "error", message: "Invalid email password"});
     }
 
     //ToDo: Hashing the password bcrypt
@@ -93,10 +90,10 @@ app.post("/api/register", async (req,res) => {
 
     } catch (e) {
         console.log("Error occured while User registration",  e);
-        res.json({status: "error", error: "Duplicate Email"});
+        return res.json({status: "error", message: "Duplicate Email"});
     }
     
-    res.json({status: "ok"})
+    return res.json({status: "success", message: "Your registration is Successful!"})
 })
 
 app.listen(1337);

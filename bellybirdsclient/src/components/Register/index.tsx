@@ -6,6 +6,7 @@ import { Button } from "@material-ui/core";
 import { useButtonStyles, useTextFieldStyles } from "../../RootStyles";
 import {REGISTER_USER_ENDPOINT} from "../../endpoints";
 import { axiosApiCall } from "../../utility";
+import Alerts from "../Styleguide/Alerts";
 
 
 
@@ -15,15 +16,19 @@ export default function Register() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [text, setText] = useState("");
+    const [severity, setSeverity] = useState("");
 
     async function registerUser() {
 
         try {
-            const res: any = axiosApiCall(REGISTER_USER_ENDPOINT, {email, password});
-            alert("Your registration is successful");
-            console.log("registration response",res);
+            const response = await axiosApiCall(REGISTER_USER_ENDPOINT, {email, password});
+            console.log("ressss", response);
+            setSeverity(response.status);
+            setText(response.message);
         } catch(e) {
-            alert(e);
+            setSeverity("error");
+            setText("Unexpected Error occured");
         }
     }
 
@@ -32,6 +37,7 @@ export default function Register() {
       <div className="register">
         <Header></Header>
         <div className="register__form">
+        <Alerts severity= {severity} text={text}></Alerts>
         <h2>Register</h2>
         <form className={textFieldClasses.root} noValidate autoComplete="off">
            <TextField fullWidth id="filled-basic" placeholder="you@awesome.com" label="Your Email" value={email} onChange={(e) => setEmail(e.target.value)} variant="outlined" />
