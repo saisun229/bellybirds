@@ -7,12 +7,18 @@ import * as jwt from "jsonwebtoken";
 import setupWebSocketServer from "./websocket";
 import {JSON_SECRET_TOKEN} from "./utilities";
 
+const PRODUCTION = process.env.NODE_ENV === "production";
 const app = express();
+
+if(PRODUCTION) {
+    app.use("/", express.static('/home/ubuntu/webapp/bellybirdsclient/build'));
+}
+
 
 mongoose.connect("mongodb://127.0.0.1:27017/bellybirds");
 
 
-if(process.env.NODE_ENV !== "production") {
+if(!PRODUCTION) {
     app.use(cors());
 }
 
