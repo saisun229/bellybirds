@@ -58,7 +58,7 @@ export default function Chat() {
        const ws = new WebSocket(`ws://${HOST}/${localStorage.getItem("token")}`);
 
        ws.addEventListener("open", ()=> {
-        ws.send(JSON.stringify({ intent: 'old-messages', count: 10, uname: state.user.uname}));
+        ws.send(JSON.stringify({ intent: 'old-messages', count: 10}));
        }, {once: true});
 
        ws.addEventListener("error", ()=> {

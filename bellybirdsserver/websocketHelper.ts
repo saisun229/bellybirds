@@ -4,6 +4,7 @@ export function broadCastMessage(message, ws: CustomWebSocket, clients:CustomWeb
 
     const newMessage = new Message({
       email: ws.connectionID,
+      uname: message.uname,
       message: message.message,
       date: Date.now()
     });

@@ -5,6 +5,7 @@ const messages_1 = require("./models/messages");
 function broadCastMessage(message, ws, clients) {
     const newMessage = new messages_1.default({
         email: ws.connectionID,
+        uname: message.uname,
         message: message.message,
         date: Date.now()
     });
