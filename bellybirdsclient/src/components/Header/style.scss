@@ -10,14 +10,11 @@
   &__heading {
     display: none;
   }
-
-  &__username {
-    display: flex;
-    position: absolute;
-    font-size: 0.85rem;
-    color: #717127;
-    right: 20px;
-  }
+ &__nav {
+   position:absolute;
+   display: flex;
+   right: 20px;
+ }
 
   &__logo {
     display: flex;

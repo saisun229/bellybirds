@@ -7,7 +7,7 @@ let decoded = {
     email: undefined,
     username: undefined
 }
-if(token) {
+if(token && token.length > 20) {
      decoded = jwt_decode(token);
 }
 
