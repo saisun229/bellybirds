@@ -3,12 +3,17 @@ import Header from "../Header";
 import './style.scss';
 import Link  from '@material-ui/core/Link';
 import { useHistory } from "react-router-dom";
+import { store } from "../../redux";
 
 
 export default function Home() {
-  const history = useHistory()
+  const history = useHistory();
+
+  const state: any = store.getState();
+  const isUserAvailable = state.user.email ? true : false
+
   function redirectUserToChat() {
-    history.push("/chat");
+    isUserAvailable ? history.push("/chat") : history.push("/login");
   }
 
   return (
