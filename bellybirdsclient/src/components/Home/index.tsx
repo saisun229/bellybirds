@@ -21,7 +21,7 @@ export default function Home() {
       <Header></Header>
       <div className="home__navigation">
         <h6>Home Page, Coming soon...</h6>
-        <Link component="button"  onClick={redirectUserToChat}>Link to Chat</Link>
+        <Link component="button"  onClick={redirectUserToChat}>Link to Live Chat</Link>
       </div>
     </div>
   )

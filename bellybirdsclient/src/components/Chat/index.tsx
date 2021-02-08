@@ -102,7 +102,7 @@ export default function Chat() {
   return (
     <div className="chat">
       <Header></Header>
-      <h2>Chat Box</h2>
+      <h2>Live Chat</h2>
       <div className="chat__messages">
       <Link component="button" onClick={showMore}>Show More</Link> 
 
