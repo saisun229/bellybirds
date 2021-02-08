@@ -9,7 +9,6 @@ const server = http.createServer();
 const wss = new WebSocket.Server({ noServer: true });
 
 let clients: CustomWebSocket[] = [];
-let uname: string = "";
 
 
 
@@ -43,7 +42,7 @@ export default function setupWebSocketServer() {
           } else if(message.intent === "old-messages"){
             const count = message.count;
             if(!count) return;
-            retrieveAndSendMessages(count, ws, clients);
+            retrieveAndSendMessages(count, ws);
           }
    
         });

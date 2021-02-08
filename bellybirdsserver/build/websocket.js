@@ -8,7 +8,6 @@ const jwt = require("jsonwebtoken");
 const server = http.createServer();
 const wss = new WebSocket.Server({ noServer: true });
 let clients = [];
-let uname = "";
 function setupWebSocketServer() {
     wss.on('connection', function connection(ws) {
         // a single client has joined.
@@ -33,7 +32,7 @@ function setupWebSocketServer() {
                 const count = message.count;
                 if (!count)
                     return;
-                websocketHelper_1.retrieveAndSendMessages(count, ws, clients);
+                websocketHelper_1.retrieveAndSendMessages(count, ws);
             }
         });
     });

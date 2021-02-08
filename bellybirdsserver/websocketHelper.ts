@@ -17,9 +17,13 @@ export function broadCastMessage(message, ws: CustomWebSocket, clients:CustomWeb
   
   }
 
-  export async function retrieveAndSendMessages(count:number, ws: CustomWebSocket, clients:CustomWebSocket[]) {
+  export async function retrieveAndSendMessages(count:number, ws: CustomWebSocket) {
 
    const messages = await Message.find().sort({date: -1}).limit(count).lean();
+   console.log("sending messagesssssssssss",JSON.stringify({
+    intent: "old-messages",
+    data: messages
+}))
    ws.send(JSON.stringify({
        intent: "old-messages",
        data: messages

@@ -14,8 +14,12 @@ function broadCastMessage(message, ws, clients) {
     clients.forEach((client) => client.send(JSON.stringify(Object.assign(Object.assign({}, message), { email: ws.connectionID, intent: "chat" }))));
 }
 exports.broadCastMessage = broadCastMessage;
-async function retrieveAndSendMessages(count, ws, clients) {
+async function retrieveAndSendMessages(count, ws) {
     const messages = await messages_1.default.find().sort({ date: -1 }).limit(count).lean();
+    console.log("sending messagesssssssssss", JSON.stringify({
+        intent: "old-messages",
+        data: messages
+    }));
     ws.send(JSON.stringify({
         intent: "old-messages",
         data: messages
