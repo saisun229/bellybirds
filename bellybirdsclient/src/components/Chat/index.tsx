@@ -21,7 +21,6 @@ const HOST = window.location.hostname + ':1338';
 export default function Chat() {
 
   const [chatMessage, setChatMessage] = useState<string>("");
-  const [showShowMore, setShowShowMore] = useState<boolean>(false);
   const [chatMessages, setChatMessages] = useState<Array<Message>>([]);
   const [wsRef, setWsRef] = useState<null | WebSocket>(null);
 
@@ -105,9 +104,7 @@ export default function Chat() {
       <Header></Header>
       <h2>Chat Box</h2>
       <div className="chat__messages">
-
-         {
-         showShowMore ? (<Link component="button" onClick={showMore}>Show More</Link>): ""} 
+      <Link component="button" onClick={showMore}>Show More</Link> 
 
         {
         chatMessages.map((message, index) => {
