@@ -3,11 +3,13 @@ import { TextField, Button } from '@material-ui/core';
 import { useButtonStyles} from "../../RootStyles"
 import Header from "../Header";
 import './style.scss';
-import { useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom";
+import {store} from "../../redux";
 
 
 type Message = {
   email: string;
+  uname: string;
   message: string;
   intent: string;
   //ToDO: date
@@ -24,6 +26,9 @@ export default function Chat() {
   const buttonclasses = useButtonStyles();
 
   const history = useHistory();
+
+  const state: any = store.getState();
+
 
   const handleKeyDown = (event: any) => {
     if (event.key === 'Enter') {
@@ -45,7 +50,7 @@ export default function Chat() {
         // websocket not connected
         return;
       }
-      wsRef.send(JSON.stringify({ message: chatMessage, intent: "chat"}))
+      wsRef.send(JSON.stringify({ message: chatMessage, intent: "chat", uname: state.user.uname}))
       setChatMessage("");
   }
 
@@ -53,7 +58,7 @@ export default function Chat() {
        const ws = new WebSocket(`ws://${HOST}/${localStorage.getItem("token")}`);
 
        ws.addEventListener("open", ()=> {
-        ws.send(JSON.stringify({ intent: 'old-messages', count: 10}));
+        ws.send(JSON.stringify({ intent: 'old-messages', count: 10, uname: state.user.uname}));
        }, {once: true});
 
        ws.addEventListener("error", ()=> {
@@ -91,7 +96,7 @@ export default function Chat() {
          {console.log("chatMessages", chatMessages)}
          { chatMessages.map( (message, index) => {
            return (<div className="chat__messages__item" key={index}>
-                     <div className="author">{message.email}:</div>
+                     <div className="author">{message.uname}:</div>
                      <div className="message">{message.message}</div>
                  </div>)
          }) }

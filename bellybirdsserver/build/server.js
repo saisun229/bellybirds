@@ -66,7 +66,9 @@ app.post("/api/register", async (req, res) => {
         console.log("Error occured while User registration", e);
         return res.json({ status: "error", message: "Duplicate Email or User Name" });
     }
-    return res.json({ status: "success", message: "Your registration is Successful!" });
+    const username = uname;
+    const payload = jwt.sign({ email, username }, utilities_1.JSON_SECRET_TOKEN);
+    return res.json({ status: "success", message: "Your registration is Successful!", token: payload });
 });
 app.listen(1337);
 websocket_1.default();
