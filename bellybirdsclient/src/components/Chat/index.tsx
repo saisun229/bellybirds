@@ -62,7 +62,6 @@ export default function Chat() {
        }, {once: true});
 
        ws.addEventListener("error", ()=> {
-         alert("Please login");
          history.replace("/login");
        })
 
