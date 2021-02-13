@@ -1,9 +1,10 @@
 import React from "react";
-import Header from "../Header";
 import './style.scss';
-import Link  from '@material-ui/core/Link';
+import Link from '@material-ui/core/Link';
 import { useHistory } from "react-router-dom";
 import { store } from "../../redux";
+import Banner from "../Banner";
+import Main from "../Styleguide/Main";
 
 
 export default function Home() {
@@ -18,11 +19,13 @@ export default function Home() {
 
   return (
     <div className="home">
-      <Header></Header>
-      <div className="home__navigation">
-        <h6>Home Page, Coming soon...</h6>
-        <Link component="button"  onClick={redirectUserToChat}>Link to Live Chat</Link>
-      </div>
+      <Banner></Banner>
+      <Main>
+        <div className="home__navigation">
+          <h6>Home Page, Coming soon...</h6>
+          <Link component="button" onClick={redirectUserToChat}>Link to Live Chat</Link>
+        </div>
+      </Main>
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { TextField, Button } from '@material-ui/core';
 import { useButtonStyles } from "../../RootStyles"
-import Header from "../Header";
+import Banner from "../Banner";
 import './style.scss';
 import { useHistory } from "react-router-dom";
 import { store } from "../../redux";
@@ -101,7 +101,7 @@ export default function Chat() {
 
   return (
     <div className="chat">
-      <Header></Header>
+      <Banner></Banner>
       <h2>Live Chat</h2>
       <div className="chat__messages">
       <Link component="button" onClick={showMore}>Show More</Link> 
