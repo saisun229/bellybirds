@@ -3,35 +3,35 @@ import HomeIcon from '@material-ui/icons/Home';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ChatIcon from '@material-ui/icons/Chat';
 import { store } from "../../redux";
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Link  from '@material-ui/core/Link';
-import Typography from '@material-ui/core/Typography';
+// import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+// import Link  from '@material-ui/core/Link';
+// import Typography from '@material-ui/core/Typography';
 import { useHistory } from "react-router-dom";
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& > * + *': {
-        marginLeft: theme.spacing(2),
-        color: '#000'
-      },
-    },
-  }),
-);
+// const useStyles = makeStyles((theme: Theme) =>
+//   createStyles({
+//     root: {
+//       '& > * + *': {
+//         marginLeft: theme.spacing(2),
+//         color: '#000'
+//       },
+//     },
+//   }),
+// );
 export default function Nav() {
 
   const history = useHistory();
   const state: any = store.getState();
   const isUserAvailable = state.user.email ? true : false;
-  const classes = useStyles();
+  // const classes = useStyles();
 
-  function redirectToLogin() {
-    history.push("/login");
-  }
+  // function redirectToLogin() {
+  //   history.push("/login");
+  // }
 
-  function redirectToRegister() {
-    history.push("/register");
-  }
+  // function redirectToRegister() {
+  //   history.push("/register");
+  // }
 
   function redirectUserToChat() {
     isUserAvailable ? history.push("/chat") : history.push("/login");
@@ -41,11 +41,11 @@ export default function Nav() {
     isUserAvailable ? history.push("/") : history.push("/login");
   }
 
-  function logoutUser() {
-    window.localStorage.removeItem("token");
-    store.dispatch({ type: 'getUser', user: { email: "", uname: "" } });
-    history.push("/");
-  }
+  // function logoutUser() {
+  //   window.localStorage.removeItem("token");
+  //   store.dispatch({ type: 'getUser', user: { email: "", uname: "" } });
+  //   history.push("/");
+  // }
 
   return (
    <nav className="nav">
