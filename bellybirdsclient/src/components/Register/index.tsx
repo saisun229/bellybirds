@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import Header from "../Header";
+import Banner from "../Banner";
 import { TextField } from '@material-ui/core';
 import './style.scss';
 import { Button } from "@material-ui/core";
@@ -60,7 +60,7 @@ export default function Register() {
 
   return (
       <div className="register">
-        <Header></Header>
+        <Banner></Banner>
         <div className="register__form">
         <Alerts severity= {severity} text={text}></Alerts>
         <h2>Register</h2>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Header from "../Header";
+import Banner from "../Banner";
 import './style.scss';
 import { TextField } from '@material-ui/core';
 import { useHistory } from "react-router-dom";
@@ -43,7 +43,7 @@ export default function Login() {
 
     return (
         <div className="login">
-            <Header></Header>
+            <Banner></Banner>
             <div className="login__form">
                 <Alerts severity={severity} text={text}></Alerts>
                 <h2>Login</h2>

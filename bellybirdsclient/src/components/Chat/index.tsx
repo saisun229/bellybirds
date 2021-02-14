@@ -5,7 +5,7 @@ import Banner from "../Banner";
 import './style.scss';
 import { useHistory } from "react-router-dom";
 import { store } from "../../redux";
-import Link  from '@material-ui/core/Link';
+import Link from '@material-ui/core/Link';
 
 
 type Message = {
@@ -54,7 +54,7 @@ export default function Chat() {
       return;
     }
     count = count + 10;
-    wsRef.send(JSON.stringify({ intent: 'old-messages', count: count })); 
+    wsRef.send(JSON.stringify({ intent: 'old-messages', count: count }));
   }
 
   function sendMessage() {
@@ -67,8 +67,8 @@ export default function Chat() {
   }
 
   useEffect(() => {
-       const ws = new WebSocket(`ws://${HOST}/${localStorage.getItem("token")}`);
-    
+    const ws = new WebSocket(`ws://${HOST}/${localStorage.getItem("token")}`);
+
     ws.addEventListener("open", () => {
       ws.send(JSON.stringify({ intent: 'old-messages', count: 100 }));
     }, { once: true });
@@ -103,35 +103,37 @@ export default function Chat() {
     <div className="chat">
       <Banner></Banner>
       <h2>Live Chat</h2>
-      <div className="chat__messages">
-      <Link component="button" onClick={showMore}>Show More</Link> 
+      <div className="chat__wrapper">
+        <div className="chat__messages">
+          <Link component="button" onClick={showMore}>Show More</Link>
 
-        {
-        chatMessages.map((message, index) => {
-          if (message.uname === state.user.uname) {
-            return (<div className="chat__messages__item active" key={index}>
-              <div className="chat__messages__item__wrapper--active">
-              <div className="author">{message.uname}:</div>
-              <div className="message">{message.message}</div>
-              </div>
-            </div>)
-          } else {
-            return (<div className="chat__messages__item" key={index}>
-              <div className="chat__messages__item__wrapper">
-                <div className="author">{message.uname}:</div>
-                <div className="message">{message.message}</div>
-              </div>
-            </div>)
-          }
+          {
+            chatMessages.map((message, index) => {
+              if (message.uname === state.user.uname) {
+                return (<div className="chat__messages__item active" key={index}>
+                  <div className="chat__messages__item__wrapper--active">
+                    <div className="author">{message.uname}:</div>
+                    <div className="message">{message.message}</div>
+                  </div>
+                </div>)
+              } else {
+                return (<div className="chat__messages__item" key={index}>
+                  <div className="chat__messages__item__wrapper">
+                    <div className="author">{message.uname}:</div>
+                    <div className="message">{message.message}</div>
+                  </div>
+                </div>)
+              }
 
 
-        })}
-      </div>
-      <div className="chat__box">
+            })}
+        </div>
+        <div className="chat__box">
 
-        <TextField fullWidth onKeyDown={handleKeyDown} placeholder="Your Message Here" label="Type Your Message" onChange={(e: any) => setChatMessage(e.target.value)} value={chatMessage} variant="outlined" />
-        <br />
-        <Button fullWidth className={buttonclasses.secondary} onClick={sendMessage} color="default" >Send Message</Button>
+          <TextField fullWidth onKeyDown={handleKeyDown} placeholder="Your Message Here" label="Type Your Message" onChange={(e: any) => setChatMessage(e.target.value)} value={chatMessage} variant="outlined" />
+          <br />
+          <Button fullWidth className={buttonclasses.secondary} onClick={sendMessage} color="default" >Send Message</Button>
+        </div>
       </div>
     </div>
   )
