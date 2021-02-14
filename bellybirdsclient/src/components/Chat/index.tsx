@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { TextField, Button } from '@material-ui/core';
-import { useButtonStyles } from "../../RootStyles"
+import { TextField } from '@material-ui/core';
 import Banner from "../Banner";
 import './style.scss';
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { store } from "../../redux";
-import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link';
+import SendIcon from '@material-ui/icons/Send';
 
 
 type Message = {
@@ -24,14 +24,12 @@ export default function Chat() {
   const [chatMessages, setChatMessages] = useState<Array<Message>>([]);
   const [wsRef, setWsRef] = useState<null | WebSocket>(null);
 
-  const buttonclasses = useButtonStyles();
-
   const history = useHistory();
 
   const state: any = store.getState();
 
 
-  let count = 10;
+  // let count = 10;
 
   const handleKeyDown = (event: any) => {
     if (event.key === 'Enter') {
@@ -48,14 +46,14 @@ export default function Chat() {
     }
   }
 
-  function showMore() {
-    if (wsRef?.readyState !== WebSocket.OPEN) {
-      // websocket not connected
-      return;
-    }
-    count = count + 10;
-    wsRef.send(JSON.stringify({ intent: 'old-messages', count: count }));
-  }
+  // function showMore() {
+  //   if (wsRef?.readyState !== WebSocket.OPEN) {
+  //     // websocket not connected
+  //     return;
+  //   }
+  //   count = count + 10;
+  //   wsRef.send(JSON.stringify({ intent: 'old-messages', count: count }));
+  // }
 
   function sendMessage() {
     if (wsRef?.readyState !== WebSocket.OPEN) {
@@ -103,10 +101,10 @@ export default function Chat() {
   return (
     <div className="chat">
       <Banner></Banner>
-      <h2>Live Chat</h2>
+      {/* <h2>Live Chat</h2> */}
       <div className="chat__wrapper">
         <div className="chat__messages">
-          <Link component="button" onClick={showMore}>Show More</Link>
+          {/* <Link component="button" onClick={showMore}>Show More</Link> */}
 
           {
             chatMessages.map((message, index) => {
@@ -130,10 +128,8 @@ export default function Chat() {
             })}
         </div>
         <div className="chat__box">
-
-          <TextField fullWidth onKeyDown={handleKeyDown} placeholder="Your Message Here" label="Type Your Message" onChange={(e: any) => setChatMessage(e.target.value)} value={chatMessage} variant="outlined" />
-          <br />
-          <Button fullWidth className={buttonclasses.secondary} onClick={sendMessage} color="default" >Send Message</Button>
+          <TextField fullWidth onKeyDown={handleKeyDown} placeholder="Live Chat Here" label="Type Your Message" onChange={(e: any) => setChatMessage(e.target.value)} value={chatMessage} variant="outlined" />
+          <div className="chat__box__send" role="button"><SendIcon fontSize="large" onClick={sendMessage}></SendIcon></div>
         </div>
       </div>
     </div>
