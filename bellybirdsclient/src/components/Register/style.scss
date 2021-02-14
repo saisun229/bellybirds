@@ -15,7 +15,7 @@
   flex-direction: column;
   margin: 1rem;
   padding: 1rem 0;
-  // border: 1px solid #dacb1c;   
+  background: linear-gradient(to top right, #fffff1, #fffef2);
    
   @include media-breakpoint-down(md) {
      width: 50%;

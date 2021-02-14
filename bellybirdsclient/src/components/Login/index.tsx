@@ -9,7 +9,7 @@ import { axiosApiCall } from "../../utility";
 import { LOGIN_USER_ENDPOINT } from "../../endpoints";
 import Alerts from "../Styleguide/Alerts";
 import jwt_decode from "jwt-decode";
-import {store} from "../../redux";
+import { store } from "../../redux";
 
 
 export default function Login() {
@@ -33,7 +33,7 @@ export default function Login() {
                 history.push("/chat");
                 const token: any = localStorage.getItem("token");
                 const decoded: any = jwt_decode(token)
-                store.dispatch({type: 'getUser', user: { email: decoded.email, uname: decoded.username}});
+                store.dispatch({ type: 'getUser', user: { email: decoded.email, uname: decoded.username } });
             }
         } catch (e) {
             setSeverity("error");
@@ -44,15 +44,15 @@ export default function Login() {
     return (
         <div className="login">
             <Banner></Banner>
-            <div className="login__form">
-                <Alerts severity={severity} text={text}></Alerts>
-                <h2>Login</h2>
-                <form className={textFieldClasses.root} noValidate autoComplete="off">
-                    <TextField id="filled-basic" placeholder="you@awesome.com" label="Your Email" value={email} onChange={(e) => setEmail(e.target.value)} variant="outlined" />
-                    <TextField id="filled-basic" placeholder="p@$$w0rd" label="Your Password" value={password} onChange={(e) => setPassword(e.target.value)} variant="outlined" />
-                    <Button fullWidth className={buttonclasses.secondary} onClick={loginUser} color="default" >Login</Button>
-                </form>
-            </div>
+                <div className="login__form">
+                    <Alerts severity={severity} text={text}></Alerts>
+                    <h2>Login</h2>
+                    <form className={textFieldClasses.root} noValidate autoComplete="off">
+                        <TextField id="filled-basic" placeholder="you@awesome.com" label="Your Email" value={email} onChange={(e) => setEmail(e.target.value)} variant="outlined" />
+                        <TextField id="filled-basic" placeholder="p@$$w0rd" label="Your Password" value={password} onChange={(e) => setPassword(e.target.value)} variant="outlined" />
+                        <Button fullWidth className={buttonclasses.secondary} onClick={loginUser} color="default" >Login</Button>
+                    </form>
+                </div>
         </div>
     )
 }

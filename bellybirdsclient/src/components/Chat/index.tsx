@@ -64,6 +64,7 @@ export default function Chat() {
     }
     wsRef.send(JSON.stringify({ message: chatMessage, intent: "chat", uname: state.user.uname }))
     setChatMessage("");
+    window.scrollTo(0,document.body.scrollHeight);
   }
 
   useEffect(() => {
