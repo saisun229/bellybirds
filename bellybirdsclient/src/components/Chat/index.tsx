@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { TextField } from '@material-ui/core';
 import Banner from "../Banner";
 import './style.scss';
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { store } from "../../redux";
 // import Link from '@material-ui/core/Link';
 import SendIcon from '@material-ui/icons/Send';
