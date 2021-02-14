@@ -1,5 +1,9 @@
 @import "bootstrap/scss/bootstrap-grid.scss";
-
+.chat {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
 
 .chat__wrapper {
   display: flex;
@@ -41,6 +45,7 @@
   width: 40%;
   padding: 1rem;
   overflow: scroll;
+  -webkit-overflow-scrolling: touch;
   border: 1px solid #dacb1c;
   max-height: 300px;
   @include media-breakpoint-down(md) {
