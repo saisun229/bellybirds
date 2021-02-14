@@ -23,6 +23,7 @@ export default function Chat() {
   const [chatMessage, setChatMessage] = useState<string>("");
   const [chatMessages, setChatMessages] = useState<Array<Message>>([]);
   const [wsRef, setWsRef] = useState<null | WebSocket>(null);
+  const [messagesEnd, setMessagesEnd] = useState<any>();
 
   const history = useHistory();
 
@@ -62,8 +63,14 @@ export default function Chat() {
     }
     wsRef.send(JSON.stringify({ message: chatMessage, intent: "chat", uname: state.user.uname }))
     setChatMessage("");
-    window.scrollTo(0,document.body.scrollHeight);
+    // messagesEnd.scrollIntoView({ behavior: "smooth" });
   }
+
+  useEffect(() => {
+    console.log("im fired", document.body.scrollHeight)
+    if(!messagesEnd) return;
+    messagesEnd.scrollIntoView({ behavior: "smooth" });
+  });
 
   useEffect(() => {
     const ws = new WebSocket(`ws://${HOST}/${localStorage.getItem("token")}`);
@@ -126,6 +133,9 @@ export default function Chat() {
 
 
             })}
+             <div style={{ float:"left", height: "10px", clear: "both" }}
+             ref={(el) => setMessagesEnd(el) }>
+            </div>
         </div>
         <div className="chat__box">
           <TextField fullWidth onKeyDown={handleKeyDown} placeholder="Live Chat Here" label="Type Your Message" onChange={(e: any) => setChatMessage(e.target.value)} value={chatMessage} variant="outlined" />
