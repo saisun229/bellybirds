@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b2a7606d.chunk.css",
+    "main.js": "/static/js/main.264337b8.chunk.js",
+    "main.js.map": "/static/js/main.264337b8.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.1db4b479.js",
+    "runtime-main.js.map": "/static/js/runtime-main.1db4b479.js.map",
+    "static/js/2.703a4072.chunk.js": "/static/js/2.703a4072.chunk.js",
+    "static/js/2.703a4072.chunk.js.map": "/static/js/2.703a4072.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.b2a7606d.chunk.css.map": "/static/css/main.b2a7606d.chunk.css.map",
+    "static/js/2.703a4072.chunk.js.LICENSE.txt": "/static/js/2.703a4072.chunk.js.LICENSE.txt",
+    "static/media/style.scss": "/static/media/bellybirdIcon.b66c63ec.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1db4b479.js",
+    "static/js/2.703a4072.chunk.js",
+    "static/css/main.b2a7606d.chunk.css",
+    "static/js/main.264337b8.chunk.js"
+  ]
+}

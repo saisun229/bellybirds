@@ -1,12 +1,45 @@
-nav {
+.nav {
     display: inline-flex;
     justify-content: center;
     align-items: center;
     background: #fff;
-    div {
+
+    &--home,&--chat,&--account {
         margin-right: 2rem;
+
         svg:hover {
             cursor: pointer;
         }
     }
+
+    &--account {
+        position: relative;
+        
+        &-popup {
+            background:#fffff1;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 2px 1px #dadbd8;
+            border-radius: 4px;
+            right: 0.5rem;
+            width: 200px;
+            display: none;
+            .MuiList-root  {
+                max-width: 100%;
+                background: linear-gradient(45deg, #d7db5c 20%, #f9e452 80%);
+            }
+
+            ul {
+                background-color: #fffff1;
+                width: 100%;
+                list-style-type: none;
+            }
+        }
+    }
+}
+
+.active {
+    display:  block;
 }
