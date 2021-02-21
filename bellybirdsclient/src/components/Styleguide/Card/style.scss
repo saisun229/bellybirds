@@ -1,4 +1,14 @@
+@import "./glass.scss";
+
 .card {
-    width: 60%;
+    @include glass(100%, auto, 2rem, center, center, row);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-height: 60vh;
+    background: rgb(219, 216, 21);
+    min-height: 50vh;
+    background: linear-gradient(to right bottom, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
+    border-radius: 2rem;
 }

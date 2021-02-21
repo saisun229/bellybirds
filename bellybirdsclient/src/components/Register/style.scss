@@ -1,4 +1,5 @@
 @import "bootstrap/scss/bootstrap-grid.scss";
+@import "../Styleguide/mixins.scss";
 
 .register {
   display: flex;
@@ -8,14 +9,10 @@
   flex-wrap: wrap;
 }
 .register__form {
-  display: flex;
-  width: 35%;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin: 1rem;
+  @include glass(35%,100%, 2rem, center,center, column);
+  margin: 5% 1rem 1rem 1rem;
   padding: 1rem 0;
-  background: linear-gradient(to top right, #fffff1, #fffef2);
+
    
   @include media-breakpoint-down(md) {
      width: 50%;

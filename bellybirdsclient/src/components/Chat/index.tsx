@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import { store } from "../../redux";
 // import Link from '@material-ui/core/Link';
 import SendIcon from '@material-ui/icons/Send';
+import Card from "../Styleguide/Card";
 
 
 type Message = {
@@ -110,6 +111,7 @@ export default function Chat() {
       <Banner></Banner>
       {/* <h2>Live Chat</h2> */}
       <div className="chat__wrapper">
+
         <div className="chat__messages">
           {/* <Link component="button" onClick={showMore}>Show More</Link> */}
 
@@ -137,9 +139,12 @@ export default function Chat() {
              ref={(el) => setMessagesEnd(el) }>
             </div>
         </div>
+
         <div className="chat__box">
+          <div className="chat__box--wrapper">
           <TextField fullWidth onKeyDown={handleKeyDown} placeholder="Live Chat Here" label="Type Your Message" onChange={(e: any) => setChatMessage(e.target.value)} value={chatMessage} variant="outlined" />
           <div className="chat__box__send" role="button"><SendIcon fontSize="large" onClick={sendMessage}></SendIcon></div>
+         </div>
         </div>
       </div>
     </div>

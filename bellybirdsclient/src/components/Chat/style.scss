@@ -1,4 +1,5 @@
 @import "bootstrap/scss/bootstrap-grid.scss";
+@import "../Styleguide/mixins.scss";
 
 .chat {
   display: flex;
@@ -15,14 +16,17 @@
 }
 
 .chat__box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
   width: 40%;
+  background-color: black;
+
+  &--wrapper {
+    @include glass(100%, auto, 0, center, center, row);
+    background: black;
+  }
   position: sticky;
   bottom: 0;
-  background: #fff;
-  border: 1px solid #dadbd8;
+  opacity: 1;
 
   @include media-breakpoint-down(md) {
     width: 60%;
@@ -40,6 +44,11 @@
     color: #ecda0b;
   }
 
+  input {
+    margin: 0;
+    padding: 1rem;
+  }
+
   &__send {
     border-radius: 50%;
     background: #000;
@@ -51,16 +60,12 @@
   }
 }
 
-.chat__box button,
-.chat__box input {
-  margin: 0.5rem 0;
-}
+
 
 .chat__messages {
-  display: flex;
-  flex-direction: column;
-  width: 40%;
+  @include glass( 40%, auto, 1rem, flex-start, center, column);
   padding: 1rem;
+  margin: 1rem 0;
 
   @include media-breakpoint-down(md) {
     width: 60%;
@@ -96,6 +101,11 @@
       margin-right: 0.5rem;
       color: rgb(107, 107, 101)
     }
+    .message {
+      display: flex;
+      flex-wrap: wrap;
+      word-break: break-all;
+    }
 
   }
 
@@ -119,47 +129,10 @@
   justify-content: flex-end;
 }
 
-// .chat__messages__item {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: flex-end;
-//   margin: 1rem 25%;
-//   padding: 1rem;
-//   overflow-y: scroll;
-//   border: 1px solid #dacb1c;
-//   justify-content: flex-end;
-//   height: 250px;
-//   border-radius: 1%;
-// }
-
-// .chat__messages__item .active {
-//   display: flex;
-//   justify-content: flex-start;
-//   flex-direction: row;
-//   padding: 0.75rem;
-//   font-size: 0.8rem;
-//   align-items: center;ß
-//   width: 100%;
-//   border-radius: 5%;
-//   margin: 0.25rem;
-// }
-
-// .chat__messages__item .active .chat__messages__item__wrapper {
-//   display: inline-flex;
-//   background-color: #d3c317 !important;
-
-//   .author {
-//     font-weight: light;
-//     font-size: 0.75rem;
-//     margin-right: 0.5rem;
-//     color: rgb(107, 107, 101)
-//   }
-// }
 
 .chat h2 {
   display: flex;
   justify-content: center;
-  /* margin: 0 25%; */
 }
 
 input {
@@ -176,4 +149,9 @@ input {
 
 .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
   border-color: #dacb1c !important;
+}
+
+.MuiFormControl-root {
+  background-color: white;
+  border-radius: 4px;
 }

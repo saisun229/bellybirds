@@ -1,3 +1,5 @@
+@import "../Styleguide/mixins.scss";
+
 .nav {
     display: inline-flex;
     justify-content: center;
@@ -28,6 +30,8 @@
             display: none;
             .MuiList-root  {
                 max-width: 100%;
+                // background-color:transparent;
+                // background: linear-gradient(to right bottom, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
                 background: linear-gradient(45deg, #d7db5c 20%, #f9e452 80%);
             }
 

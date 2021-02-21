@@ -1,3 +1,4 @@
+@import "bootstrap/scss/bootstrap-grid.scss";
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,8 +6,23 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(to top right, #fffff1, #fffef2);
+  background: radial-gradient(
+    circle at -80%,
+    #000000,
+    #000000 40%,
+    #f8d73a 20%,
+    #f8d73a 55%,
+    #000000 5%
+) fixed;
+  background-repeat: no-repeat;
   height: 100vh;
+
+  @include media-breakpoint-down(sm) {
+    background: black;
+  }
+  @include media-breakpoint-down(xs) {
+    background: black;
+  }
 }
 
 code {

@@ -1,11 +1,11 @@
-import './style.scss';
+import '../mixins.scss';
 
 
-export default function Card() {
+export default function Card(props:any) {
 
   return (
    <section className="card">
-     
+     {props.children}
    </section>
   )
 }

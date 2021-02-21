@@ -1,4 +1,5 @@
 @import "bootstrap/scss/bootstrap-grid.scss";
+@import "../Styleguide/mixins.scss";
 
 .login {
   display: flex;
@@ -8,15 +9,10 @@
   flex-wrap: wrap;
 }
 .login__form {
-  display: flex;
-  width: 35%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin: 1rem;
+  @include glass(35%,100%, 2rem, center,center, column);
+  margin: 5% 1rem 1rem 1rem;
   padding: 1rem 0;
-  // border: 1px solid #dacb1c;    
+
   @include media-breakpoint-down(md) {
      width: 50%;
   }

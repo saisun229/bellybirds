@@ -2,6 +2,7 @@ import React from "react";
 import './style.scss';
 import Banner from "../Banner";
 import Main from "../Styleguide/Main";
+import Card from "../Styleguide/Card";
 
 
 export default function Home() {
@@ -9,11 +10,9 @@ export default function Home() {
   return (
     <div className="home">
       <Banner></Banner>
-      <Main>
-        <div className="home__navigation">
-          <h6>Home Page, Coming soon...</h6>
-        </div>
-      </Main>
+       <Main>
+        <Card></Card>
+        </Main>
     </div>
   )
 }
