@@ -19,10 +19,10 @@
 
   width: 40%;
   background-color: black;
+  padding-top: 1rem;
 
   &--wrapper {
-    @include glass(100%, auto, 0, center, center, row);
-    background: black;
+    @include glass(100%, auto, 1rem, center, center, row);
   }
 
   position: sticky;
@@ -38,7 +38,7 @@
   }
 
   @include media-breakpoint-down(xs) {
-    width: 100%;
+    width: 90%;
   }
 
   svg {
@@ -66,7 +66,7 @@
 .chat__messages {
   @include glass(40%, auto, 1rem, flex-start, center, column);
   padding: 1rem;
-  margin: 1rem 0;
+  margin: 1rem 0 0 0;
 
   @include media-breakpoint-down(md) {
     width: 60%;
@@ -151,11 +151,4 @@ input {
 
 .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
   border-color: #dacb1c !important;
-}
-
-.chat {
-  .MuiFormControl-root {
-    background-color: white;
-    border-radius: 4px;
-  }
 }
