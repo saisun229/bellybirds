@@ -4,17 +4,13 @@ import Banner from "../Banner";
 import './style.scss';
 import { useHistory } from "react-router-dom";
 import { store } from "../../redux";
-// import Link from '@material-ui/core/Link';
 import SendIcon from '@material-ui/icons/Send';
-import Card from "../Styleguide/Card";
-
 
 type Message = {
   email: string;
   uname: string;
   message: string;
   intent: string;
-  //ToDO: date
 }
 
 const HOST = window.location.hostname + ':1338';
@@ -31,7 +27,6 @@ export default function Chat() {
   const state: any = store.getState();
 
 
-  // let count = 10;
 
   const handleKeyDown = (event: any) => {
     if (event.key === 'Enter') {
