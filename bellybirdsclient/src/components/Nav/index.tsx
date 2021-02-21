@@ -49,7 +49,7 @@ export default function Nav() {
   }
 
   function redirectUserToHome() {
-    isUserAvailable ? history.push("/") : history.push("/login");
+    history.push("/");
   }
 
   function logoutUser() {
