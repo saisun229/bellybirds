@@ -7,6 +7,10 @@
   height: 100px;
   background-color: #fff;
 
+  @include media-breakpoint-down(xs) {
+    height: 60px;
+  }
+
   &__logo {
     display: flex;
     justify-content: flex-start;
