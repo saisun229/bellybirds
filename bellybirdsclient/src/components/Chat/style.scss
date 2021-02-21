@@ -41,24 +41,11 @@
     width: 90%;
   }
 
-  svg {
-    color: #ecda0b;
-  }
-
   input {
     margin: 0;
     padding: 1rem;
   }
 
-  &__send {
-    border-radius: 50%;
-    background: #000;
-    margin: 1rem;
-    padding: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
 }
 
 
