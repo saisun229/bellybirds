@@ -18,8 +18,12 @@ const app = express();
 mongoose.connect("mongodb://127.0.0.1:27017/bellybirds");
 
 
-if(!PRODUCTION) {
-    app.use(cors());
+if(PRODUCTION) {
+    const corsOptions = {
+        origin: 'https://www.bellybirds.com',
+        optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+      }
+    app.use(cors(corsOptions));
 }
 
 app.use(bodyParser.json());
