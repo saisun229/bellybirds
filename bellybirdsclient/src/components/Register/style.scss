@@ -10,7 +10,7 @@
 }
 .register__form {
   @include glass(35%,100%, 2rem, center,center, column);
-  margin: 5% 1rem 1rem 1rem;
+  margin: 10% 1rem 1rem 1rem;
   padding: 1rem 0;
 
    
@@ -19,9 +19,11 @@
   }
   @include media-breakpoint-down(sm) {
     width: 80%;
+    margin-top: 25%
   }
   @include media-breakpoint-down(xs) {
     width: 100%;
+    margin: 25% 0.25rem 0.25rem 0.25rem;
   }
 }
 

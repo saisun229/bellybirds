@@ -24,6 +24,7 @@
     @include glass(100%, auto, 0, center, center, row);
     background: black;
   }
+
   position: sticky;
   bottom: 0;
   opacity: 1;
@@ -63,7 +64,7 @@
 
 
 .chat__messages {
-  @include glass( 40%, auto, 1rem, flex-start, center, column);
+  @include glass(40%, auto, 1rem, flex-start, center, column);
   padding: 1rem;
   margin: 1rem 0;
 
@@ -101,6 +102,7 @@
       margin-right: 0.5rem;
       color: rgb(107, 107, 101)
     }
+
     .message {
       display: flex;
       flex-wrap: wrap;
@@ -151,7 +153,9 @@ input {
   border-color: #dacb1c !important;
 }
 
-.MuiFormControl-root {
-  background-color: white;
-  border-radius: 4px;
+.chat {
+  .MuiFormControl-root {
+    background-color: white;
+    border-radius: 4px;
+  }
 }
